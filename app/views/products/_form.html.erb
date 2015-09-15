@@ -17,7 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <!-- we modified the text_area, let it shows 6 lines in edit.html -->
+    <%= f.text_area :description, :rows => 6 %>    
   </div>
   <div class="field">
     <%= f.label :image_url %><br>
