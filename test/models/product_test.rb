@@ -46,8 +46,6 @@ class ProductTest < ActiveSupport::TestCase
   end
 
 
-
-
   def new_product(image_url)
     Product.new(:title        => "My Book Title",
                 :description  => "yyy",
@@ -63,6 +61,18 @@ class ProductTest < ActiveSupport::TestCase
     bad.each do |name|
       assert new_product(name).invalid?, "#{name} shouldn't be invalid"
     end
+  end
+
+
+  # Assignment. Chapter_7
+  test "Title is too short (minimum is 10 characters)" do
+    product = Product.new(:description  => "yyy",
+                          :image_url    => 'zzz.jpg',
+                          :price        => 1)
+    product.title = "short_t"
+    assert product.invalid?, "#{product.title} shouldn't be invalid"
+    assert_equal "is too short (minimum is 10 characters)",
+                 product.errors[:title].join('; ')
   end
 
 end
